@@ -1,0 +1,32 @@
+﻿C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:62: ("Mathematics", "STEM", "\U0001f4d0"),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:64: ("Further Mathematics", "STEM", "\U0001f9ee"),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:99: headline="Mathematics & Further Mathematics Tutor (WAEC, NECO, JAMB)",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:101: "Mathematics. My lessons are built around past-question drills, clear step-by-step "
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:105: mode=TeachingMode.HYBRID, subjects=["Mathematics", "Further Mathematics", "JAMB / UTME Coaching", "Physics"],
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:106: quals="B.Sc. Mathematics (First Class), University of Lagos; PGDE, NCE certified",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:137: mode=TeachingMode.ONLINE, subjects=["Computer Science", "Web Development", "Data Analysis", "Mathematics"],
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:163: headline="Physics & Mathematics Tutor (problem-solving focused)",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:169: mode=TeachingMode.HYBRID, subjects=["Physics", "Mathematics", "Further Mathematics"],
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:217: mode=TeachingMode.IN_PERSON, subjects=["Phonics & Reading", "Verbal & Quantitative Reasoning", "Mathematics"],
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:272: headline="Mathematics & Science tutor for JAMB/WAEC candidates",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:277: mode=TeachingMode.HYBRID, subjects=["Mathematics", "Physics", "Chemistry", "JAMB / UTME Coaching"],
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:278: quals="B.Sc. Mathematics Education, UDUS; awaiting TRCN certification",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:290: goals="Score A1 in WAEC Mathematics and pass JAMB with 300+.",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:307: goals="Prepare for the BECE and build confidence in Mathematics.",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:608: ("Chiamaka Obi", "Chinedu Okafor", "Mathematics", RequestStatus.PENDING, "future"),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:615: ("Tobi Alabi", "Chinedu Okafor", "Further Mathematics", RequestStatus.ACCEPTED, "soon"),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:622: ("Halima Sani", "Chinedu Okafor", "Mathematics", RequestStatus.REJECTED, "past"),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_admin.py:545: listing = client.get("/api/subjects", params={"q": "Mathematics"}).json()["items"]
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_admin.py:546: maths = [s for s in listing if s["name"] == "Mathematics"][0]
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_admin.py:554: assert all(s["name"] != "Mathematics" for s in client.get("/api/subjects").json()["items"])
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_admin.py:567: assert any(s["name"] == "Mathematics" for s in tutor["subjects"])
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_admin.py:572: assert any(s["name"] == "Mathematics" for s in client.get("/api/subjects").json()["items"])
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_auth.py:53: "headline": "Test Mathematics tutor",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_auth.py:54: "bio": "I have taught mathematics for many years and enjoy helping students improve quickly.",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_requests.py:12: """A brand-new tutor with one Monday 16:00-19:00 slot teaching Mathematics."""
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_requests.py:69: "message": "I would like to improve my mathematics grade before the exams.",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_requests.py:85: assert data["subject_name"] == "Mathematics"
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_reviews.py:210: assert review["subject_name"] == "Mathematics"
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_students_subjects.py:50: "learning_goals": "Score A1 in Mathematics and Further Mathematics before WAEC.",
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_students_subjects.py:163: assert "Mathematics" in names
+C:\Users\PC\Desktop\workspace-02\tutorconnect\tests\test_tutors.py:62: by_text = client.get("/api/tutors", params={"q": "Mathematics"}).json()

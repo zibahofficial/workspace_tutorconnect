@@ -1,0 +1,38 @@
+﻿C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\forgot-password\index.html:22: <span class="ap-logo-mark" aria-hidden="true">🎓</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\forgot-password\index.html:64: Send reset instructions <span aria-hidden="true">→</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\forgot-password\index.html:74: <div class="ap-success-icon" aria-hidden="true">✉️</div>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\forgot-password\index.html:80: <em>Dashboard → Account → Change password</em>.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\forgot-password\index.html:84: re-issue one from <em>Admin → Users</em>.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\dashboard.js:1721: '<label class="field"><span class="label">Icon (emoji)</span><input class="input" id="sj-icon" maxlength="4" value="' + 
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\login.js:75: renderAlert('<div class="error-box"><span class="ico">⚠️</span><div>Please enter both your email and password.</div></di
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\login.js:93: renderAlert('<div class="error-box"><span class="ico">⚠️</span><div>' + UI.esc(err.message) + "</div></div>");
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\login.js:95: renderAlert('<div class="error-box"><span class="ico">⚠️</span><div>' + UI.esc(err.message) + "</div></div>");
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\register.js:60: subjectPicker.innerHTML = '<p class="error-box"><span class="ico">⚠️</span>' + UI.esc(err.message) + "</p>";
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\register.js:115: renderAlert('<div class="error-box"><span class="ico">⚠️</span><div><strong>Please fix ' +
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\register.js:272: renderAlert('<div class="error-box"><span class="ico">⚠️</span><div><strong>' +
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\register.js:277: renderAlert('<div class="error-box"><span class="ico">⚠️</span><div>' + UI.esc(err.message) + "</div></div>");
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\tutor-profile.js:156: el("span", { class: "emoji", text: s.icon || "📘" }),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\tutor-profile.js:250: }, "Open in Google Maps ↗"),
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\js\tutor-profile.js:253: "See more tutors in " + tutor.state + " →")
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\login\index.html:22: <span class="ap-logo-mark" aria-hidden="true">🎓</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\login\index.html:80: Sign in <span aria-hidden="true">→</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\signup\index.html:22: <span class="ap-logo-mark" aria-hidden="true">🎓</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\signup\index.html:51: <button class="ap-role-tab" type="button" role="tab" data-role="student" aria-selected="true">🎒 I am a Student</button>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\signup\index.html:52: <button class="ap-role-tab" type="button" role="tab" data-role="tutor" aria-selected="false">🧑‍🏫 I am a Tutor</button>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\signup\index.html:53: <button class="ap-role-tab" type="button" role="tab" data-role="parent" aria-selected="false">👪 I am a Parent</button>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\signup\index.html:184: Create account <span aria-hidden="true">→</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\404.html:9: <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' f
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\404.html:17: <div style="font-size: 64px; line-height: 1;" aria-hidden="true">🧭</div>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\index.html:128: <a href="tutors.html" class="btn btn-outline">Browse all tutors →</a>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\index.html:147: <span class="step-arrow">→</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\index.html:153: <span class="step-arrow">→</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\login.html:75: <span class="icon-left">✉️</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\login.html:85: <span class="icon-left">🔒</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\register.html:111: <span class="rs-icon" aria-hidden="true">🎓</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\register.html:118: <span class="rs-icon" aria-hidden="true">👨‍👩‍👧</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\register.html:125: <span class="rs-icon" aria-hidden="true">🎓</span>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\register.html:534: '<div class="error-box"><span class="ico">⚠️</span><div><strong>This page is not connected to the TutorConnect server.</
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\tutors.html:127: <button type="button" class="pill-tab" data-rating="3">3.0★+</button>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\tutors.html:128: <button type="button" class="pill-tab" data-rating="4">4.0★+</button>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\tutors.html:129: <button type="button" class="pill-tab" data-rating="4.5">4.5★+</button>
+C:\Users\PC\Desktop\workspace-02\tutorconnect\frontend\tutors.html:159: <button class="btn btn-outline btn-sm" type="button" id="mobileFilters" style="display:none">⚙️ Filters</button>

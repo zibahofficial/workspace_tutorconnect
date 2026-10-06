@@ -1,0 +1,48 @@
+# --- Secrets & local configuration -----------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Runtime uploads (profile photos, created at runtime) --------------------
+frontend/uploads/
+
+# --- Databases (created at runtime by the seeder) ---------------------------
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# --- Editors / OS -----------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Logs -------------------------------------------------------------------
+*.log
+logs/

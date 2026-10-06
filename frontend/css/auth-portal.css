@@ -1,0 +1,473 @@
+/* ==========================================================================
+   TutorConnect — Auth Portal (Edumentry-style sign in / sign up)
+   ADD-ONLY stylesheet: every class is prefixed `ap-` so nothing in the
+   existing design system is overridden or redefined. Tokens (colours,
+   radii, shadows, fonts) are borrowed from css/styles.css via var().
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- canvas -- */
+.ap-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(52rem 34rem at 18% 34%, rgba(139, 122, 255, 0.28), transparent 62%),
+    radial-gradient(46rem 32rem at 84% 74%, rgba(52, 211, 153, 0.26), transparent 60%),
+    radial-gradient(38rem 26rem at 62% 12%, rgba(196, 181, 253, 0.18), transparent 65%),
+    linear-gradient(160deg, #f7f6ff 0%, #f4f8f6 55%, #eef8f2 100%);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ------------------------------------------------------------- top bar -- */
+.ap-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.ap-topbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ap-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Sora", "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 1.02rem;
+  color: var(--ink-900);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ap-logo-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
+  color: #fff;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.ap-logo em { font-style: normal; color: var(--primary); }
+
+.ap-search {
+  flex: 1;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: var(--ink-400);
+}
+
+.ap-search input {
+  border: 0;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font: inherit;
+  font-size: 0.86rem;
+  color: var(--text);
+}
+
+.ap-topbar-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+.ap-link-plain {
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-600);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+
+.ap-link-plain:hover { color: var(--primary); }
+
+.ap-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink-900);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ap-btn-dark:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+
+.ap-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--ink-600);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.ap-burger { display: none; }
+
+/* -------------------------------------------------------------- layout -- */
+.ap-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px 72px;
+}
+
+.ap-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 18px 46px -18px rgba(15, 23, 42, 0.22);
+  padding: 34px 34px 30px;
+}
+
+.ap-card-wide { max-width: 560px; }
+
+.ap-title {
+  font-family: "Sora", "Inter", sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0 0 4px;
+}
+
+.ap-subtitle { margin: 0 0 24px; font-size: 0.86rem; color: var(--ink-500); }
+
+/* --------------------------------------------------------------- fields -- */
+.ap-field { margin-bottom: 16px; }
+
+.ap-labelrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.ap-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.ap-forgot {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.ap-forgot:hover { text-decoration: underline; }
+
+.ap-input-wrap { position: relative; }
+
+.ap-input {
+  width: 100%;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  padding: 11px 13px;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ap-input::placeholder { color: var(--ink-300); }
+
+.ap-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.ap-input[type="password"] { letter-spacing: 0.12em; padding-right: 44px; }
+
+.ap-eye {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: var(--ink-400);
+  cursor: pointer;
+}
+
+.ap-eye:hover { background: var(--ink-050); color: var(--ink-700); }
+.ap-eye svg { width: 18px; height: 18px; }
+
+.ap-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.ap-select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-400) 50%), linear-gradient(135deg, var(--ink-400) 50%, transparent 50%); background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
+
+.ap-error {
+  display: none;
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: var(--rose-soft);
+  color: #9f1239;
+  border: 1px solid rgba(225, 29, 72, 0.18);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.ap-error.show { display: block; }
+
+.ap-field-error {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.72rem;
+  color: var(--rose);
+}
+
+/* ------------------------------------------------------------ role tabs -- */
+.ap-roles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: var(--ink-050);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.ap-role-tab {
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  padding: 9px 6px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink-500);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ap-role-tab:hover { color: var(--ink-800); }
+
+.ap-role-tab[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--primary);
+  box-shadow: var(--shadow-xs);
+}
+
+.ap-role-hint {
+  margin: -12px 0 18px;
+  font-size: 0.75rem;
+  color: var(--ink-400);
+  line-height: 1.5;
+}
+
+.ap-section { display: none; }
+.ap-section.on { display: block; }
+
+.ap-section-title {
+  margin: 20px 0 10px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+/* ------------------------------------------------------- subject chips -- */
+.ap-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  max-height: 132px;
+  overflow: auto;
+  padding: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.ap-chip {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-600);
+  cursor: pointer;
+}
+
+.ap-chip[aria-pressed="true"] {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-700);
+}
+
+.ap-chip-count { font-size: 0.7rem; color: var(--ink-400); margin-left: 6px; }
+
+/* ------------------------------------------------------------- buttons -- */
+.ap-submit {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 16px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ap-submit:hover { background: var(--primary-600); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.ap-submit:disabled { opacity: 0.65; cursor: wait; transform: none; }
+
+.ap-help {
+  margin: 14px auto 0;
+  max-width: 34ch;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.55;
+  color: var(--ink-400);
+}
+
+.ap-help strong { color: var(--ink-600); }
+
+.ap-switch {
+  margin: 22px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--ink-500);
+}
+
+.ap-switch a { color: var(--primary); font-weight: 700; text-decoration: none; }
+.ap-switch a:hover { text-decoration: underline; }
+
+.ap-legacy {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--ink-300);
+}
+
+.ap-legacy a { color: var(--ink-400); }
+
+/* --------------------------------------------------------------- footer -- */
+.ap-footer {
+  padding: 18px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--ink-400);
+}
+
+/* ---------------------------------------------------------- success box -- */
+.ap-success {
+  display: none;
+  text-align: center;
+  padding: 8px 4px 4px;
+}
+
+.ap-success.on { display: block; }
+
+.ap-success-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 1.5rem;
+}
+
+.ap-success h2 { font-family: "Sora", "Inter", sans-serif; font-size: 1.2rem; margin: 0 0 8px; color: var(--ink-900); }
+.ap-success p { font-size: 0.83rem; color: var(--ink-500); line-height: 1.6; margin: 0 0 6px; }
+.ap-success code { background: var(--ink-050); border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; font-size: 0.78rem; }
+
+/* ----------------------------------------------------------- strength -- */
+.ap-strength { display: flex; gap: 4px; margin-top: 7px; }
+.ap-strength i { height: 4px; flex: 1; border-radius: 999px; background: var(--ink-100); transition: background 0.15s ease; }
+.ap-strength[data-score="1"] i:nth-child(-n+1) { background: var(--rose); }
+.ap-strength[data-score="2"] i:nth-child(-n+2) { background: var(--amber); }
+.ap-strength[data-score="3"] i:nth-child(-n+3) { background: var(--amber); }
+.ap-strength[data-score="4"] i { background: var(--green); }
+.ap-strength-label { margin-top: 5px; font-size: 0.68rem; color: var(--ink-400); }
+
+/* ---------------------------------------------------------- responsive -- */
+@media (max-width: 720px) {
+  .ap-search { display: none; }
+  .ap-burger { display: inline-flex; }
+  .ap-topbar-actions .ap-link-plain { display: none; }
+  .ap-main { padding: 34px 14px 52px; }
+  .ap-card { padding: 26px 20px 24px; }
+  .ap-grid-2 { grid-template-columns: 1fr; }
+  .ap-roles { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ap-submit, .ap-btn-dark, .ap-role-tab { transition: none; }
+}

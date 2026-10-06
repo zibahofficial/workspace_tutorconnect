@@ -1,0 +1,46 @@
+﻿C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\routers\admin.py:150: # time series built in Python so it works identically on SQLite & Postgres
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\routers\reviews.py:34: SQLite hands back naive UTC datetimes while PostgreSQL returns aware ones,
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\routers\subjects.py:64: "icon": subject.icon,
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\routers\subjects.py:98: subject = Subject(name=name, category=payload.category, icon=payload.icon)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\routers\subjects.py:114: "icon": subject.icon,
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\routers\subjects.py:140: subject.icon = payload.icon
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:67: def _resolve_sqlite_path(url: str) -> str:
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:68: """Anchor relative ``sqlite:///`` URLs to the project root.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:70: ``sqlite:///./data/tutorconnect.db`` is resolved against the *current working
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:74: every other backend (PostgreSQL, in-memory SQLite) are returned untouched.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:76: prefix = "sqlite:///"
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:102: # Defaults to a local SQLite file so the project runs with zero setup.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:103: # Point DATABASE_URL at PostgreSQL for production:
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:105: default_sqlite = f"sqlite:///{(BASE_DIR / 'data' / 'tutorconnect.db').as_posix()}"
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:106: self.database_url: str = _resolve_sqlite_path(
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:107: os.getenv("DATABASE_URL", default_sqlite)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:175: def using_sqlite(self) -> bool:
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:176: return self.database_url.startswith("sqlite")
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:180: url = self.database_url
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:189: "database": "sqlite" if self.using_sqlite else url,
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:204: # Ensure the SQLite data directory exists before the engine connects.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:205: if settings.using_sqlite:
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\config.py:206: _db_path = settings.database_url.replace("sqlite:///", "")
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:5: which removes SQL-injection risk.  Works with SQLite out of the box and with
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:6: PostgreSQL when DATABASE_URL is configured.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:24: url = settings.database_url
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:27: if url.startswith("sqlite"):
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:28: # SQLite needs `check_same_thread=False` for FastAPI's threadpool.
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:61: if settings.using_sqlite:
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:64: def _sqlite_pragmas(dbapi_connection, _connection_record):  # pragma: no cover
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:65: """Enable foreign keys + WAL journaling for SQLite."""
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:88: Base.metadata.create_all(bind=engine)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\database.py:96: Base.metadata.create_all(bind=engine)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\helpers.py:166: "icon": subject.icon,
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\models.py:304: icon: Mapped[Optional[str]] = mapped_column(String(40), nullable=True)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\schemas.py:224: icon: Optional[str] = None
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\schemas.py:231: icon: Optional[str] = Field(default=None, max_length=16)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\schemas.py:375: icon: Optional[str] = None
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:407: for name, category, icon in SUBJECTS:
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:410: existing = Subject(name=name, category=category, icon=icon, is_active=True)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\seed.py:589: Subject(name=SEED_MARKER_SUBJECT, category="system", icon=None, is_active=False)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\services.py:58: """Portable TIME -> minutes expression (SQLite vs PostgreSQL)."""
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\services.py:61: if session.bind.dialect.name == "sqlite":
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\services.py:442: select(Subject.id, Subject.name, Subject.category, Subject.icon, func.count(TutorSubject.id))
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\services.py:450: .group_by(Subject.id, Subject.name, Subject.category, Subject.icon)
+C:\Users\PC\Desktop\workspace-02\tutorconnect\backend\services.py:473: "icon": row[3],

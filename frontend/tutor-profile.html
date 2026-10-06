@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tutor profile — TutorConnect</title>
+<meta name="description" content="View a tutor's qualifications, subjects, weekly availability, session rate and verified reviews, then send a booking request." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<main id="profilePage">
+  <div id="loadingHost" class="container" style="padding-block:40px">
+    <div class="skeleton" style="height:280px;border-radius:20px"></div>
+    <div class="profile-layout" style="padding-block:26px">
+      <div class="stack">
+        <div class="skeleton" style="height:180px;border-radius:18px"></div>
+        <div class="skeleton" style="height:220px;border-radius:18px"></div>
+      </div>
+      <div class="skeleton" style="height:320px;border-radius:18px"></div>
+    </div>
+  </div>
+
+  <div id="profileHost" class="hide"></div>
+</main>
+
+<footer id="footer" class="footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/tutor-profile.js"></script>
+</body>
+</html>

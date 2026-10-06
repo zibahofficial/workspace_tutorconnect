@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TutorConnect — Find the Right Tutor. Learn With Confidence.</title>
+<meta name="description" content="Discover qualified tutors by subject, location, experience, availability and budget. View profiles, check real availability and request a session in minutes." />
+<meta name="theme-color" content="#0b1120" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<style>
+  /* hero trust stats are live links, not dead placeholders */
+  .hero-trust a { color: inherit; text-decoration: none; cursor: pointer; }
+  .hero-trust a div { transition: transform .18s ease; }
+  .hero-trust a:hover div, .hero-trust a:focus-visible div { transform: translateY(-2px); }
+  .hero-trust a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+</style>
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<main>
+  <!-- ============================================================ HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&amp;fit=crop&amp;w=1800&amp;q=80"
+           alt="A tutor working one-on-one with a student" fetchpriority="high"
+           onerror="this.classList.add('img-fallback');this.removeAttribute('src');" />
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow on-dark"><i class="bi bi-stars"></i> Trusted tutor marketplace for Nigerian families</span>
+        <h1>Find the Right Tutor.<br /><span class="grad">Learn With Confidence.</span></h1>
+        <p class="hero-lead">
+          Discover qualified tutors based on subject, location, availability, experience and budget.
+          Compare real profiles, see live weekly availability, and send a booking request in under a minute.
+        </p>
+        <div class="hero-cta">
+          <a href="tutors.html" class="btn btn-primary btn-lg"><i class="bi bi-search"></i> Find a Tutor</a>
+          <a href="register.html?role=tutor" class="btn btn-glass btn-lg"><i class="bi bi-mortarboard-fill"></i> Become a Tutor</a>
+        </div>
+        <div class="hero-trust" id="heroTrust">
+          <a href="tutors.html" title="Browse every verified tutor">
+            <div><strong id="statTutors">–</strong><span>Verified tutors</span></div>
+          </a>
+          <a href="#subjects" title="See every subject covered on TutorConnect">
+            <div><strong id="statSubjects">–</strong><span>Subjects covered</span></div>
+          </a>
+          <a href="dashboard.html?view=requests" title="Review booking requests and completed sessions">
+            <div><strong id="statSessions">–</strong><span>Sessions booked</span></div>
+          </a>
+          <a href="tutors.html?sort=rating" title="See the highest-rated tutors first">
+            <div><strong id="statRating">–</strong><span>Average rating</span></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="search-card">
+          <h3>Start your search</h3>
+          <p class="small">Tell us what you need — we’ll match you with tutors from our live database.</p>
+          <form id="heroSearch" novalidate>
+            <label class="field">
+              <span class="label">Subject</span>
+              <select class="select" name="subject_id" id="heroSubject">
+                <option value="">Any subject</option>
+              </select>
+            </label>
+            <div class="search-row">
+              <label class="field">
+                <span class="label">Location</span>
+                <input class="input" name="location" id="heroLocation" placeholder="e.g. Yaba, Lagos" autocomplete="off" />
+              </label>
+              <label class="field">
+                <span class="label">Max budget</span>
+                <select class="select" name="max_price" id="heroBudget">
+                  <option value="">Any budget</option>
+                  <option value="3000">Up to ₦3,000</option>
+                  <option value="5000">Up to ₦5,000</option>
+                  <option value="7000">Up to ₦7,000</option>
+                  <option value="10000">Up to ₦10,000</option>
+                  <option value="20000">Up to ₦20,000</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span class="label">Availability</span>
+              <select class="select" name="day" id="heroDay">
+                <option value="">Any day</option>
+              </select>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Search tutors</button>
+            <p class="hint center" style="margin:12px 0 0">
+              No account needed to browse. <a href="register.html?role=student">Create one</a> to send requests.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= SUBJECTS -->
+  <section class="section" id="subjects">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Browse by subject</span>
+        <h2>Every subject, taught by specialists</h2>
+        <p class="muted">From primary phonics to A-level sciences, exam prep and tech skills — all pulled live from tutor profiles on the platform.</p>
+      </div>
+      <div id="subjectGrid" class="subject-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================== FEATURED TUTORS -->
+  <section class="section" id="featured" style="background:linear-gradient(180deg,#fff,#f6f7fb)">
+    <div class="container">
+      <div class="section-head row-between" style="max-width:none">
+        <div>
+          <span class="eyebrow">Top rated this week</span>
+          <h2 style="margin-bottom:6px">Featured tutors</h2>
+          <p class="muted" style="margin:0">Ranked by real review scores and completed sessions — not paid placement.</p>
+        </div>
+        <a href="tutors.html" class="btn btn-outline">Browse all tutors →</a>
+      </div>
+      <div id="featuredTutors"><div class="tutor-grid" id="featuredSkeleton"></div></div>
+    </div>
+  </section>
+
+  <!-- ===================================================== HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps to the right tutor</h2>
+        <p class="muted">No phone calls, no middlemen, no guesswork.</p>
+      </div>
+      <div class="steps">
+        <a class="step" href="tutors.html" style="color:inherit;text-decoration:none;display:block;cursor:pointer" title="Browse and filter live tutor profiles">
+          <div class="num">1</div>
+          <h3>Search &amp; filter</h3>
+          <p>Narrow thousands of profiles down by subject, city, teaching mode, years of experience, budget and the exact days you are free.</p>
+          <span class="step-arrow">→</span>
+        </a>
+        <a class="step" href="tutors.html?sort=rating" style="color:inherit;text-decoration:none;display:block;cursor:pointer" title="Compare the highest-rated tutor profiles and reviews">
+          <div class="num">2</div>
+          <h3>Compare &amp; review</h3>
+          <p>Open a full profile: qualifications, teaching style, weekly availability, session price and verified reviews from other parents.</p>
+          <span class="step-arrow">→</span>
+        </a>
+        <a class="step" href="dashboard.html?view=requests" style="color:inherit;text-decoration:none;display:block;cursor:pointer" title="Follow every booking request status in your dashboard">
+          <div class="num">3</div>
+          <h3>Request &amp; track</h3>
+          <p>Send a booking request for a specific slot. The tutor accepts or declines, and you follow every status change in your dashboard.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== FOR FAMILIES -->
+  <section class="section" style="background:#fff">
+    <div class="container split">
+      <div class="split-media">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&amp;fit=crop&amp;w=1100&amp;q=80"
+             alt="A student studying with a tutor at a desk" loading="lazy"
+             onerror="this.classList.add('img-fallback');this.removeAttribute('src');" />
+      </div>
+      <div>
+        <span class="eyebrow">For students &amp; parents</span>
+        <h2>Stop guessing. Start matching.</h2>
+        <p class="muted">
+          Finding a tutor used to mean WhatsApp broadcasts and referrals you could not verify.
+          TutorConnect puts the whole market in one place with the details that actually matter to you.
+        </p>
+        <ul class="checklist">
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Filter by budget</strong> — see only tutors inside your price range, in naira per session.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Real availability</strong> — every tutor publishes weekly slots, and booked times disappear automatically.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Verified experience</strong> — qualifications, years teaching and subjects, all on one profile.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Transparent reviews</strong> — only families with a completed session can rate a tutor.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Full request history</strong> — pending, accepted, rejected, cancelled and completed, in one dashboard.</span></li>
+        </ul>
+        <div class="btn-group" style="margin-top:24px">
+          <a href="tutors.html" class="btn btn-primary">Find a tutor</a>
+          <a href="register.html?role=student" class="btn btn-outline">Create free account</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== FOR TUTORS -->
+  <section class="section">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">For tutors</span>
+        <h2>Fill your timetable with students who need you</h2>
+        <p class="muted">
+          Publish your subjects, set your weekly availability and your session rate. Requests arrive in your
+          dashboard with the student’s message, subject and preferred time — accept or decline in one click.
+        </p>
+        <ul class="checklist">
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Professional profile</strong> — photo, bio, qualifications, subjects and rate.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Availability you control</strong> — add, edit, pause or delete weekly slots any time.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Request pipeline</strong> — see pending, accepted and completed sessions at a glance.</span></li>
+          <li><span class="tick"><i class="bi bi-check-lg"></i></span><span><strong>Earn reviews</strong> — completed sessions unlock ratings that lift you in search.</span></li>
+        </ul>
+        <div class="btn-group" style="margin-top:24px">
+          <a href="register.html?role=tutor" class="btn btn-accent">Become a tutor</a>
+          <a href="login.html" class="btn btn-outline">Tutor sign in</a>
+        </div>
+      </div>
+      <div class="split-media">
+        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=1100&amp;q=80"
+             alt="A tutor explaining a lesson to students in a classroom" loading="lazy" onerror="this.classList.add('img-fallback');this.removeAttribute('src');" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== SOCIAL PROOF -->
+  <section class="section" style="background:#fff">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Real reviews</span>
+        <h2>What families say after a session</h2>
+        <p class="muted">Pulled directly from completed bookings on the platform.</p>
+      </div>
+      <div id="testimonialGrid" class="quote-grid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================= CTA -->
+  <section class="section-tight" style="padding-block:70px">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="row-between" style="align-items:flex-end">
+          <div>
+            <h2 style="margin-bottom:10px">Ready to meet your next tutor?</h2>
+            <p style="margin-bottom:22px">Join families and tutors already matching on TutorConnect. It takes less than two minutes to create an account.</p>
+            <div class="btn-group">
+              <a href="tutors.html" class="btn btn-lg" style="background:#fff;color:#312e81">Find a Tutor</a>
+              <a href="register.html?role=tutor" class="btn btn-glass btn-lg">Become a Tutor</a>
+            </div>
+          </div>
+          <div class="hide" style="display:block" id="ctaSide">
+            <div class="banner-img" style="width:min(320px,34vw);aspect-ratio:4/3">
+              <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                   alt="Students studying together" loading="lazy" onerror="this.classList.add('img-fallback');this.removeAttribute('src');" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" class="footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

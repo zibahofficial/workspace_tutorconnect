@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Find Tutors — TutorConnect</title>
+<meta name="description" content="Search and filter verified tutors by subject, location, experience, availability and budget." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Find tutors</span></div>
+      <h1>Find your perfect tutor</h1>
+      <p>Filter by subject, location, experience, availability and budget. Every profile, price and review comes straight from our live database.</p>
+    </div>
+  </div>
+
+  <div class="container browse">
+    <!-- ================================================== FILTERS -->
+    <aside class="filters" id="filters" aria-label="Search filters">
+      <div class="filters-head">
+        <strong>Filters</strong>
+        <button class="btn btn-sm btn-ghost" type="button" id="resetFilters">Reset all</button>
+      </div>
+
+      <details class="filter-group" open>
+        <summary>Search</summary>
+        <div class="filter-body">
+          <div class="search-input-wrap">
+            <span class="search-icon"><i class="bi bi-search"></i></span>
+            <input class="input" type="search" id="f-q" placeholder="Name, subject or keyword" autocomplete="off" />
+          </div>
+          <label class="field" style="margin:0">
+            <span class="label">Subject</span>
+            <select class="select" id="f-subject_id"><option value="">Any subject</option></select>
+          </label>
+        </div>
+      </details>
+
+      <details class="filter-group" open>
+        <summary>Location</summary>
+        <div class="filter-body">
+          <label class="field" style="margin:0">
+            <span class="label">City or state</span>
+            <input class="input" type="search" id="f-location" placeholder="e.g. Yaba or Lagos" autocomplete="off" list="cityList" />
+            <datalist id="cityList"></datalist>
+          </label>
+          <label class="field" style="margin:0">
+            <span class="label">Teaching mode</span>
+            <select class="select" id="f-mode">
+              <option value="">Any mode</option>
+              <option value="in_person">In person</option>
+              <option value="online">Online</option>
+              <option value="hybrid">Online &amp; in person</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
+      <details class="filter-group" open>
+        <summary>Budget</summary>
+        <div class="filter-body">
+          <div class="field-row">
+            <label class="field" style="margin:0">
+              <span class="label">Min ₦</span>
+              <input class="input" type="number" id="f-min_price" min="0" step="500" placeholder="0" />
+            </label>
+            <label class="field" style="margin:0">
+              <span class="label">Max ₦</span>
+              <input class="input" type="number" id="f-max_price" min="0" step="500" placeholder="Any" />
+            </label>
+          </div>
+          <input type="range" id="f-price-range" min="0" max="20000" step="500" value="20000" aria-label="Maximum budget slider" />
+          <div class="range-outputs"><span>₦0</span><span id="priceRangeLabel">Any budget</span></div>
+        </div>
+      </details>
+
+      <details class="filter-group" open>
+        <summary>Experience</summary>
+        <div class="filter-body">
+          <div class="pill-tabs" id="expTabs">
+            <button type="button" class="pill-tab active" data-min="">Any</button>
+            <button type="button" class="pill-tab" data-min="1">1+ yrs</button>
+            <button type="button" class="pill-tab" data-min="3">3+ yrs</button>
+            <button type="button" class="pill-tab" data-min="5">5+ yrs</button>
+            <button type="button" class="pill-tab" data-min="10">10+ yrs</button>
+          </div>
+        </div>
+      </details>
+
+      <details class="filter-group" open>
+        <summary>Availability</summary>
+        <div class="filter-body">
+          <span class="label" style="margin-bottom:2px">Day</span>
+          <div class="day-grid" id="dayGrid"></div>
+          <div class="field-row" style="margin-top:6px">
+            <label class="field" style="margin:0">
+              <span class="label">From</span>
+              <input class="input" type="time" id="f-start_after" step="900" />
+            </label>
+            <label class="field" style="margin:0">
+              <span class="label">Until</span>
+              <input class="input" type="time" id="f-end_before" step="900" />
+            </label>
+          </div>
+          <label class="check" style="margin-top:4px">
+            <input type="checkbox" id="f-available_today" />
+            <span>Available today</span>
+          </label>
+        </div>
+      </details>
+
+      <details class="filter-group" open>
+        <summary>Rating &amp; trust</summary>
+        <div class="filter-body">
+          <div class="pill-tabs" id="ratingTabs">
+            <button type="button" class="pill-tab active" data-rating="">Any</button>
+            <button type="button" class="pill-tab" data-rating="3">3.0★+</button>
+            <button type="button" class="pill-tab" data-rating="4">4.0★+</button>
+            <button type="button" class="pill-tab" data-rating="4.5">4.5★+</button>
+          </div>
+          <label class="check">
+            <input type="checkbox" id="f-verified_only" />
+            <span>Verified tutors only</span>
+          </label>
+        </div>
+      </details>
+    </aside>
+
+    <!-- ================================================== RESULTS -->
+    <section>
+      <div class="toolbar">
+        <div class="search-input-wrap grow" style="min-width:220px">
+          <span class="search-icon"><i class="bi bi-search"></i></span>
+          <input class="input" type="search" id="topQ" placeholder="Search tutors by name, subject or city…" autocomplete="off" />
+          <button class="search-clear" id="topQClear" type="button" aria-label="Clear search">×</button>
+        </div>
+        <label class="row" style="gap:8px;margin:0">
+          <span class="small muted nowrap">Sort by</span>
+          <select class="select" id="f-sort" style="min-width:190px">
+            <option value="relevance">Best match</option>
+            <option value="rating">Highest rated</option>
+            <option value="price_asc">Price: low to high</option>
+            <option value="price_desc">Price: high to low</option>
+            <option value="experience">Most experienced</option>
+            <option value="popular">Most sessions</option>
+            <option value="newest">Newest profiles</option>
+          </select>
+        </label>
+        <button class="btn btn-outline btn-sm" type="button" id="mobileFilters" style="display:none">⚙️ Filters</button>
+      </div>
+
+      <div class="row-between" style="margin-bottom:14px">
+        <div class="count" id="resultCount">Searching tutors…</div>
+        <div class="small muted" id="activeSummary"></div>
+      </div>
+
+      <div id="activeChips" class="row-wrap" style="margin-bottom:16px"></div>
+
+      <div id="results">
+        <div class="tutor-grid" id="skeleton"></div>
+      </div>
+
+      <div id="paginationHost"></div>
+    </section>
+  </div>
+</main>
+
+<footer id="footer" class="footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/tutors.js"></script>
+</body>
+</html>

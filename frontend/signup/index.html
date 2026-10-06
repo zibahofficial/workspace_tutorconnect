@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Create your account · TutorConnect</title>
+<meta name="description" content="Join TutorConnect as a student, tutor or parent — one account, three roles." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/auth-portal.css" />
+</head>
+<body class="ap-body" data-ap-page="signup">
+
+<!-- ============================================================ TOP BAR -->
+<header class="ap-topbar">
+  <div class="ap-topbar-inner">
+    <a class="ap-logo" href="/index.html" aria-label="TutorConnect home">
+      <span class="ap-logo-mark" aria-hidden="true">🎓</span>
+      Tutor<em>Match</em>
+    </a>
+
+    <label class="ap-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" placeholder="Search for courses, topics, or instructors" aria-label="Search tutors" />
+    </label>
+
+    <nav class="ap-topbar-actions" aria-label="Account">
+      <a class="ap-icon-btn" href="/tutors.html" title="Browse tutors" aria-label="Browse tutors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      </a>
+      <a class="ap-link-plain" href="/login">Log in</a>
+      <a class="ap-btn-dark" href="/signup" aria-current="page">Sign up</a>
+      <button class="ap-icon-btn ap-burger" type="button" aria-label="Menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- =============================================================== CARD -->
+<main class="ap-main">
+  <section class="ap-card ap-card-wide" aria-labelledby="ap-title">
+    <h1 class="ap-title" id="ap-title">Create your account</h1>
+    <p class="ap-subtitle">One login for the whole family — pick how you’ll use TutorConnect.</p>
+
+    <div class="ap-roles" role="tablist" aria-label="I am a…">
+      <button class="ap-role-tab" type="button" role="tab" data-role="student" aria-selected="true">🎒 I am a Student</button>
+      <button class="ap-role-tab" type="button" role="tab" data-role="tutor" aria-selected="false">🧑‍🏫 I am a Tutor</button>
+      <button class="ap-role-tab" type="button" role="tab" data-role="parent" aria-selected="false">👪 I am a Parent</button>
+    </div>
+    <p class="ap-role-hint" id="ap-role-hint"></p>
+
+    <form id="ap-signup-form" novalidate>
+      <!-- ---------------------------------------------------- everyone -->
+      <div class="ap-field">
+        <div class="ap-labelrow"><label class="ap-label" for="su-name">Full name</label></div>
+        <input class="ap-input" id="su-name" name="full_name" type="text"
+               placeholder="e.g. Adaeze Nwankwo" autocomplete="name" />
+      </div>
+
+      <div class="ap-grid-2">
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-email">Email address</label></div>
+          <input class="ap-input" id="su-email" name="email" type="email"
+                 placeholder="name@example.com" autocomplete="email" />
+        </div>
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-city">City</label></div>
+          <input class="ap-input" id="su-city" name="city" type="text" placeholder="e.g. Yaba" autocomplete="address-level2" />
+        </div>
+      </div>
+
+      <div class="ap-grid-2">
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-password">Password</label></div>
+          <div class="ap-input-wrap">
+            <input class="ap-input" id="su-password" name="password" type="password"
+                   placeholder="••••••••" autocomplete="new-password" />
+            <button class="ap-eye" id="ap-eye-up" type="button" data-eye="su-password" aria-label="Show password">
+              <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/><path d="M4 4l16 16"/></svg>
+            </button>
+          </div>
+          <div class="ap-strength" id="ap-strength" data-score="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <span class="ap-strength-label" id="ap-strength-label"></span>
+        </div>
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-state">State</label></div>
+          <input class="ap-input" id="su-state" name="state" type="text" placeholder="e.g. Lagos State" autocomplete="address-level1" />
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- student -->
+      <div class="ap-section on" data-section="student">
+        <div class="ap-grid-2">
+          <div class="ap-field">
+            <div class="ap-labelrow"><label class="ap-label" for="su-level">Education level</label></div>
+            <select class="ap-input ap-select" id="su-level" name="education_level">
+              <option value="">Select…</option>
+              <option>Primary</option>
+              <option>Junior Secondary</option>
+              <option>Senior Secondary</option>
+              <option>Undergraduate</option>
+              <option>Postgraduate</option>
+              <option>Adult learner</option>
+            </select>
+          </div>
+          <div class="ap-field">
+            <div class="ap-labelrow"><label class="ap-label" for="su-guardian">Parent / guardian name</label></div>
+            <input class="ap-input" id="su-guardian" name="guardian_name" type="text" placeholder="Optional" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ----------------------------------------------------- parent -->
+      <div class="ap-section" data-section="parent">
+        <div class="ap-grid-2">
+          <div class="ap-field">
+            <div class="ap-labelrow"><label class="ap-label" for="su-child">Child’s full name</label></div>
+            <input class="ap-input" id="su-child" name="child_name" type="text" placeholder="e.g. Chidi Nwankwo" />
+          </div>
+          <div class="ap-field">
+            <div class="ap-labelrow"><label class="ap-label" for="su-child-level">Child’s class</label></div>
+            <select class="ap-input ap-select" id="su-child-level" name="child_level">
+              <option value="">Select…</option>
+              <option>Primary</option>
+              <option>Junior Secondary</option>
+              <option>Senior Secondary</option>
+              <option>Undergraduate</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------------------------------------------ tutor -->
+      <div class="ap-section" data-section="tutor">
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-headline">Professional headline</label></div>
+          <input class="ap-input" id="su-headline" name="headline" type="text"
+                 placeholder="e.g. Mathematics tutor · 8 years · WAEC & JAMB specialist" />
+        </div>
+
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-bio">About you (min. 40 characters)</label></div>
+          <textarea class="ap-input" id="su-bio" name="bio" rows="4"
+                    placeholder="Your experience, teaching style, results and qualifications…"></textarea>
+        </div>
+
+        <div class="ap-grid-2">
+          <div class="ap-field">
+            <div class="ap-labelrow"><label class="ap-label" for="su-years">Years of experience</label></div>
+            <input class="ap-input" id="su-years" name="years_experience" type="number" min="0" max="70" placeholder="e.g. 5" />
+          </div>
+          <div class="ap-field">
+            <div class="ap-labelrow"><label class="ap-label" for="su-rate">Hourly rate (₦)</label></div>
+            <input class="ap-input" id="su-rate" name="hourly_rate" type="number" min="0" step="100" placeholder="e.g. 6000" />
+          </div>
+        </div>
+
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label" for="su-mode">Teaching mode</label></div>
+          <select class="ap-input ap-select" id="su-mode" name="teaching_mode">
+            <option value="hybrid">Online & in person</option>
+            <option value="online">Online only</option>
+            <option value="in_person">In person only</option>
+          </select>
+        </div>
+
+        <div class="ap-field">
+          <div class="ap-labelrow"><label class="ap-label">Subjects you teach</label></div>
+          <div class="ap-chips" id="ap-subject-chips" aria-label="Subjects">
+            <span class="ap-field-error">Loading subjects…</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ap-error" id="ap-signup-error" role="alert"></div>
+
+      <button class="ap-submit" id="ap-signup-submit" type="submit">
+        Create account <span aria-hidden="true">→</span>
+      </button>
+
+      <p class="ap-help">
+        By continuing you agree to our community guidelines. Tutors are visible in
+        search immediately; admins can suspend any profile.
+      </p>
+    </form>
+
+    <p class="ap-switch">
+      Already have an account? <a href="/login">Sign in</a>
+    </p>
+    <p class="ap-legacy">
+      Prefer the classic TutorConnect portal? <a href="/register.html">Legacy registration</a>
+    </p>
+  </section>
+</main>
+
+<footer class="ap-footer">© <span id="ap-year">2026</span> TutorConnect — Find the right tutor. Learn with confidence.</footer>
+
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/auth-portal.js"></script>
+</body>
+</html>

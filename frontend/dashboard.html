@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard — TutorConnect</title>
+<meta name="description" content="Your TutorConnect dashboard: requests, bookings, availability, profile and reviews." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<main>
+  <div class="page-head" style="padding-block:30px">
+    <div class="container row-between">
+      <div>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Dashboard</span></div>
+        <h1 id="dashGreeting" style="margin:0">Loading your dashboard…</h1>
+        <p id="dashRole">Preparing your workspace</p>
+      </div>
+      <div class="row" id="dashQuickActions"></div>
+    </div>
+  </div>
+
+  <div class="container dash">
+    <aside class="dash-side">
+      <div class="side-card" id="sideUser"></div>
+      <nav class="side-nav" id="sideNav" aria-label="Dashboard sections"></nav>
+      <div class="side-card" id="sideTip"></div>
+    </aside>
+
+    <section class="dash-main" id="viewHost" aria-live="polite">
+      <div class="stack">
+        <div class="skeleton" style="height:120px;border-radius:18px"></div>
+        <div class="skeleton" style="height:280px;border-radius:18px"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer id="footer" class="footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

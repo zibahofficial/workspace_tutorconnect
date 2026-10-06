@@ -1,0 +1,26 @@
+# ---------------------------------------------------------------------------
+# TutorConnect — runtime dependencies
+# Python 3.11+ (developed and tested on 3.13)
+#
+#   pip install -r requirements.txt
+# ---------------------------------------------------------------------------
+
+# --- Web framework / ASGI server -------------------------------------------
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32        # form + file uploads
+
+# --- Data layer ------------------------------------------------------------
+SQLAlchemy==2.1.1
+alembic==1.20.0                 # optional: schema migrations
+psycopg2-binary==2.9.13         # PostgreSQL driver (unused with the SQLite default)
+
+# --- Validation / security -------------------------------------------------
+pydantic==2.13.4
+email-validator==2.3.0
+passlib==1.7.4                  # pbkdf2_sha256 password hashing
+PyJWT==2.15.1                   # JSON Web Tokens
+
+# --- Testing ---------------------------------------------------------------
+pytest==9.0.3
+httpx==0.28.1                   # required by fastapi.testclient

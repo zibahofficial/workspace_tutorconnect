@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Create your account — TutorConnect</title>
+<meta name="description" content="Join TutorConnect as a student, parent or tutor. Create your profile, set availability and start matching." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<style>
+  /* ============================================================
+     Role selector — custom dropdown (scoped to this page only)
+     ============================================================ */
+  .rs { position: relative; }
+  .rs-field {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    width: 100%; padding: 12px 14px; text-align: left; cursor: pointer;
+    background: var(--surface, #fff); color: var(--ink-900, #0f172a);
+    border: 1.5px solid var(--border-strong, #cbd5e1); border-radius: var(--radius, 12px);
+    font: inherit; transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  .rs-field:hover { border-color: var(--ink-200, #94a3b8); }
+  .rs.open .rs-field,
+  .rs-field:focus-visible {
+    border-color: var(--primary, #4f46e5);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+    outline: none;
+  }
+  .rs.is-invalid .rs-field { border-color: var(--rose, #e11d48); }
+  .rs-value.is-placeholder { color: var(--ink-400, #94a3b8); }
+  .rs-chevron { flex: 0 0 auto; color: var(--ink-500, #64748b); transition: transform .18s ease; }
+  .rs.open .rs-chevron { transform: rotate(180deg); }
+  .rs-list {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 60;
+    margin: 0; padding: 6px; list-style: none;
+    background: var(--surface, #fff); border: 1px solid var(--border, #e2e8f0);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16), 0 2px 8px rgba(15, 23, 42, 0.08);
+    max-height: 320px; overflow: auto;
+  }
+  .rs-list[hidden] { display: none; }
+  .rs-option {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  }
+  .rs-option + .rs-option { margin-top: 2px; }
+  .rs-option.is-active, .rs-option:hover { background: var(--primary-soft, #eef2ff); }
+  .rs-option[aria-selected="true"] {
+    background: var(--primary-soft, #eef2ff);
+    box-shadow: inset 0 0 0 1.5px var(--primary, #4f46e5);
+  }
+  .rs-icon { font-size: 22px; line-height: 1.25; }
+  .rs-text { display: flex; flex-direction: column; gap: 2px; }
+  .rs-text strong { font-size: 0.98rem; }
+  .rs-text small { color: var(--ink-500, #64748b); font-size: 0.82rem; line-height: 1.35; }
+  .rs-error { display: none; margin-top: 6px; font-size: 0.79rem; font-weight: 600; color: var(--rose, #e11d48); }
+  .rs-error:not(:empty) { display: block; }
+  .rs-radio { position: absolute; opacity: 0; pointer-events: none; }
+  /* stats strip removed — keep the hero text from feeling cramped (+40px) */
+  .auth-media { padding-bottom: 84px; }
+  @media (max-width: 940px) {
+    .auth-media { padding-bottom: 64px; }
+  }
+  @media (max-width: 620px) {
+    .rs-list { max-height: 62vh; }
+  }
+</style>
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<main class="auth">
+  <section class="auth-media">
+    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+         alt="A teacher guiding a student through a lesson" onerror="this.classList.add('img-fallback');this.removeAttribute('src');" />
+    <span class="eyebrow on-dark">Join TutorConnect</span>
+    <h2>Two minutes to set up. A lifetime of better learning.</h2>
+    <p>
+      Create an account as a student to find and request tutors, as a parent to book for your child,
+      or as a tutor to publish your profile, availability and rates. Your data is stored in a real
+      database and only you can see it.
+    </p>
+  </section>
+
+  <section class="auth-panel">
+    <div class="auth-card" style="max-width:600px">
+      <h1>Create your account</h1>
+      <p class="lead">Choose what best describes you.</p>
+
+      <div id="formAlert"></div>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <span class="label" id="roleLabel">I am a <span class="req">*</span></span>
+          <div class="rs" id="roleSelect">
+            <button type="button" class="rs-field" id="rsField"
+                    aria-haspopup="listbox" aria-expanded="false" aria-controls="rsList"
+                    aria-labelledby="roleLabel rsValue">
+              <span class="rs-value is-placeholder" id="rsValue">Select your role</span>
+              <svg class="rs-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <ul class="rs-list" id="rsList" role="listbox" aria-labelledby="roleLabel" tabindex="-1" hidden>
+              <li class="rs-option" id="rs-opt-student" role="option" aria-selected="false" data-value="student" tabindex="-1">
+                <span class="rs-icon" aria-hidden="true"><i class="bi bi-mortarboard"></i></span>
+                <span class="rs-text">
+                  <strong>Student</strong>
+                  <small>Search tutors, compare profiles and send your own booking requests.</small>
+                </span>
+              </li>
+              <li class="rs-option" id="rs-opt-parent" role="option" aria-selected="false" data-value="parent" tabindex="-1">
+                <span class="rs-icon" aria-hidden="true"><i class="bi bi-people"></i></span>
+                <span class="rs-text">
+                  <strong>Parent</strong>
+                  <small>Find and book tutors for your child, and manage their sessions.</small>
+                </span>
+              </li>
+              <li class="rs-option" id="rs-opt-tutor" role="option" aria-selected="false" data-value="tutor" tabindex="-1">
+                <span class="rs-icon" aria-hidden="true"><i class="bi bi-person-workspace"></i></span>
+                <span class="rs-text">
+                  <strong>Tutor</strong>
+                  <small>Publish your profile, set availability and receive requests.</small>
+                </span>
+              </li>
+            </ul>
+            <span class="rs-error" id="rsError" role="alert"></span>
+            <!-- hidden radios keep the existing form logic (js/register.js) working unchanged -->
+            <input class="rs-radio" type="radio" name="role" value="student" tabindex="-1" aria-hidden="true" />
+            <input class="rs-radio" type="radio" name="role" value="parent" tabindex="-1" aria-hidden="true" />
+            <input class="rs-radio" type="radio" name="role" value="tutor" tabindex="-1" aria-hidden="true" />
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="field-row">
+          <label class="field">
+            <span class="label">Full name <span class="req">*</span></span>
+            <input class="input" type="text" name="full_name" required minlength="2" maxlength="120"
+                   placeholder="e.g. Amaka Obi" autocomplete="name" />
+            <span class="field-error"></span>
+          </label>
+          <label class="field">
+            <span class="label">Phone <span class="tiny faint">(optional)</span></span>
+            <input class="input" type="tel" name="phone" maxlength="30" placeholder="+234 801 234 5678" autocomplete="tel" />
+            <span class="field-error"></span>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label">Email address <span class="req">*</span></span>
+          <input class="input" type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+          <span class="field-error"></span>
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="label">Password <span class="req">*</span></span>
+            <input class="input" type="password" name="password" id="password" required minlength="8"
+                   placeholder="At least 8 characters" autocomplete="new-password" />
+            <div class="strength" id="strength" data-score="0"><i></i><i></i><i></i><i></i></div>
+            <div class="strength-text" id="strengthText">Use 8+ characters with a mix of letters and numbers.</div>
+            <span class="field-error"></span>
+          </label>
+          <label class="field">
+            <span class="label">Confirm password <span class="req">*</span></span>
+            <input class="input" type="password" name="confirm_password" id="confirmPassword" required
+                   placeholder="Repeat your password" autocomplete="new-password" />
+            <span class="field-error"></span>
+          </label>
+        </div>
+
+        <div class="field">
+          <span class="label">Profile photo</span>
+          <div id="photoPicker"></div>
+        </div>
+
+        <!-- ---------------------------------------------- student fields -->
+        <div id="studentFields">
+          <hr />
+          <h3 style="font-size:1.02rem">Where should we look for tutors?</h3>
+          <div class="field-row">
+            <label class="field">
+              <span class="label">City</span>
+              <input class="input" type="text" name="city" id="studentCity" maxlength="120" placeholder="e.g. Surulere" autocomplete="address-level2" />
+              <span class="field-error"></span>
+            </label>
+            <label class="field">
+              <span class="label">State</span>
+              <input class="input" type="text" name="state" id="studentState" maxlength="120" placeholder="e.g. Lagos State" autocomplete="address-level1" />
+              <span class="field-error"></span>
+            </label>
+          </div>
+          <label class="field">
+            <span class="label">Education level</span>
+            <select class="select" name="education_level">
+              <option value="">Select level</option>
+              <option>Nursery / Early years</option>
+              <option>Primary 1–3</option>
+              <option>Primary 4–6</option>
+              <option>JSS1 (Junior Secondary 1)</option>
+              <option>JSS2 (Junior Secondary 2)</option>
+              <option>JSS3 (Junior Secondary 3)</option>
+              <option>SS1 (Senior Secondary 1)</option>
+              <option>SS2 (Senior Secondary 2)</option>
+              <option>SS3 (Senior Secondary 3)</option>
+              <option>University undergraduate</option>
+              <option>Adult / professional</option>
+              <option>Parent booking for a child</option>
+            </select>
+            <span class="field-error"></span>
+          </label>
+          <label class="field">
+            <span class="label">Guardian name <span class="tiny faint">(if booking for a child)</span></span>
+            <input class="input" type="text" name="guardian_name" maxlength="120" placeholder="e.g. Mrs. Adaeze Nwankwo" />
+            <span class="field-error"></span>
+          </label>
+        </div>
+
+        <!-- ---------------------------------------------- parent fields -->
+        <div id="parentFields" class="hide">
+          <label class="field">
+            <span class="label">Child's name <span class="tiny faint">(optional)</span></span>
+            <input class="input" type="text" name="child_name" maxlength="120" placeholder="e.g. Kamsi Nwankwo" />
+            <span class="hint">We'll personalise this parent account for the learner you book for.</span>
+            <span class="field-error"></span>
+          </label>
+        </div>
+
+        <!-- ------------------------------------------------ tutor fields -->
+        <div id="tutorFields" class="hide">
+          <hr />
+          <h3 style="font-size:1.02rem">Build your tutor profile</h3>
+          <p class="muted small" style="margin-top:-6px">You can refine everything later from your dashboard.</p>
+
+          <label class="field">
+            <span class="label">Professional headline <span class="req">*</span></span>
+            <select class="select" name="headline">
+              <option value="">Select your professional headline…</option>
+              <option>Mathematics &amp; Further Mathematics tutor (WAEC, NECO, JAMB)</option>
+              <option>English &amp; Literature tutor (WAEC, NECO, JAMB)</option>
+              <option>Physics, Chemistry &amp; Biology tutor (senior secondary)</option>
+              <option>Chemistry &amp; Biology tutor for senior secondary students</option>
+              <option>Primary school tutor (all subjects, Grades 1-6)</option>
+              <option>ICT, Computer Science &amp; Coding tutor</option>
+              <option>Economics, Government &amp; Commerce tutor</option>
+              <option>Accounting &amp; Business Studies tutor</option>
+              <option>Geography &amp; Environmental Science tutor</option>
+              <option>History &amp; Social Studies tutor</option>
+              <option>Music, Piano &amp; Voice tutor</option>
+              <option>French &amp; Foreign Languages tutor</option>
+              <option>JAMB / UTME &amp; Post-UTME coaching specialist</option>
+              <option>IGCSE, SAT &amp; IELTS preparation specialist</option>
+              <option>Special-needs &amp; home-schooling tutor</option>
+              <option>University admission &amp; essay-writing coach</option>
+            </select>
+            <span class="field-error"></span>
+          </label>
+
+          <label class="field">
+            <span class="label">Bio <span class="req">*</span></span>
+            <textarea class="textarea" name="bio" maxlength="4000" rows="5"
+                      placeholder="Describe your teaching style, results you have delivered and who you teach best (at least 40 characters)."></textarea>
+            <div class="hint"><span id="bioCount">0</span>/4000 characters · minimum 40</div>
+            <span class="field-error"></span>
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span class="label">Years of experience <span class="req">*</span></span>
+              <input class="input" type="number" name="years_experience" min="0" max="70" step="1" placeholder="e.g. 5" />
+              <span class="field-error"></span>
+            </label>
+            <label class="field">
+              <span class="label">Rate per session (₦) <span class="req">*</span></span>
+              <input class="input" type="number" name="hourly_rate" min="0" max="5000000" step="100" placeholder="e.g. 5000" />
+              <span class="field-error"></span>
+            </label>
+          </div>
+
+          <div class="field-row-3">
+            <label class="field">
+              <span class="label">City <span class="req">*</span></span>
+              <input class="input" type="text" name="city" maxlength="120" placeholder="e.g. Yaba" autocomplete="address-level2" />
+              <span class="field-error"></span>
+            </label>
+            <label class="field">
+              <span class="label">State <span class="req">*</span></span>
+              <select class="select" name="state">
+                <option value="">Select your state…</option>
+                <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
+                <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
+                <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
+                <option>Ekiti</option><option>Enugu</option><option>Gombe</option><option>Imo</option>
+                <option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option>
+                <option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option>
+                <option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option>
+                <option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option>
+                <option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option>
+                <option>Federal Capital Territory (Abuja)</option>
+              </select>
+              <span class="field-error"></span>
+            </label>
+            <label class="field">
+              <span class="label">Teaching mode <span class="req">*</span></span>
+              <select class="select" name="teaching_mode">
+                <option value="hybrid">Online &amp; in person</option>
+                <option value="online">Online only</option>
+                <option value="in_person">In person only</option>
+              </select>
+              <span class="field-error"></span>
+            </label>
+          </div>
+
+          <div class="field">
+            <span class="label">Subjects you teach <span class="req">*</span></span>
+            <select class="select" id="subjectSelect">
+              <option value="">Select a subject to add…</option>
+            </select>
+            <div id="subjectPicker" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px"></div>
+            <div class="hint">Pick from the list above — add every subject you teach. <span id="subjectCount">0</span> selected.</div>
+            <span class="field-error"></span>
+          </div>
+
+          <label class="field">
+            <span class="label">Qualifications</span>
+            <select class="select" name="qualifications">
+              <option value="">Select your qualification (optional)…</option>
+              <option>B.Sc. / B.A. / B.Eng. (Bachelor's degree)</option>
+              <option>B.Sc. / B.A. (First Class Honours)</option>
+              <option>Master's degree (M.Sc. / M.A. / M.Eng.)</option>
+              <option>Doctorate (PhD / EdD)</option>
+              <option>MBBS / BDS (Medical degree)</option>
+              <option>NCE (Nigeria Certificate in Education)</option>
+              <option>PGDE / Postgraduate Diploma in Education</option>
+              <option>HND / Diploma</option>
+              <option>Professional certification (ICAN, CIBN, CISCO, TRCN)</option>
+              <option>WAEC / NECO certificate + verifiable teaching experience</option>
+            </select>
+            <span class="field-error"></span>
+          </label>
+        </div>
+
+        <hr />
+        <label class="check" style="margin-bottom:18px">
+          <input type="checkbox" id="terms" required />
+          <span>I agree to the TutorConnect terms of service and privacy policy, and confirm the information above is accurate.</span>
+        </label>
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitBtn">Create account</button>
+      </form>
+
+      <p class="auth-alt">Already have an account? <a href="login.html">Sign in</a></p>
+    </div>
+  </section>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/register.js"></script>
+<script>
+/* ==========================================================================
+   Role selector — custom accessible dropdown (scoped to register.html).
+   Drives the hidden role radios so js/register.js keeps working unchanged.
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  var root = document.getElementById("roleSelect");
+  var form = document.getElementById("registerForm");
+  var field = document.getElementById("rsField");
+  var valueEl = document.getElementById("rsValue");
+  var list = document.getElementById("rsList");
+  var errEl = document.getElementById("rsError");
+  var options = Array.prototype.slice.call(list.querySelectorAll(".rs-option"));
+  var radios = Array.prototype.slice.call(root.querySelectorAll('input[name="role"]'));
+  var sections = ["studentFields", "parentFields", "tutorFields"]
+    .map(function (id) { return document.getElementById(id); });
+  var TITLES = { student: "Student", parent: "Parent", tutor: "Tutor" };
+
+  var selected = null;
+  var activeIndex = -1;
+  var synced = false;
+
+  /* --------------------------------------------------------- open / close -- */
+  function isOpen() { return root.classList.contains("open"); }
+
+  function setActive(index) {
+    activeIndex = Math.max(0, Math.min(options.length - 1, index));
+    options.forEach(function (opt, i) {
+      opt.classList.toggle("is-active", i === activeIndex);
+    });
+    list.setAttribute("aria-activedescendant", options[activeIndex].id);
+  }
+
+  function openList() {
+    if (isOpen()) return;
+    root.classList.add("open");
+    field.setAttribute("aria-expanded", "true");
+    list.hidden = false;
+    var start = selected
+      ? options.findIndex(function (o) { return o.dataset.value === selected; })
+      : 0;
+    setActive(start < 0 ? 0 : start);
+    list.focus();
+  }
+
+  function closeList(refocus) {
+    if (!isOpen()) return;
+    root.classList.remove("open");
+    field.setAttribute("aria-expanded", "false");
+    list.hidden = true;
+    list.removeAttribute("aria-activedescendant");
+    if (refocus) field.focus();
+  }
+
+  /* ---------------------------------------------------------------- select -- */
+  function selectRole(value, fromUser) {
+    if (!TITLES[value]) return;
+    selected = value;
+    valueEl.textContent = TITLES[value];
+    valueEl.classList.remove("is-placeholder");
+    errEl.textContent = "";
+    root.classList.remove("is-invalid");
+    options.forEach(function (opt) {
+      opt.setAttribute("aria-selected", String(opt.dataset.value === value));
+    });
+    var radio = radios.filter(function (r) { return r.value === value; })[0];
+    if (radio && !radio.checked) {
+      radio.checked = true;
+      /* js/register.js listens for "change" on these radios (field visibility,
+         submit label, payload role) — no edits needed over there. */
+      radio.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    if (fromUser) closeList(true);
+  }
+
+  /* ---------------------------------------------------------------- wiring -- */
+  field.addEventListener("click", function () {
+    if (isOpen()) { closeList(true); } else { openList(); }
+  });
+
+  field.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); openList(); }
+    else if (e.key === "Escape") { closeList(true); }
+  });
+
+  list.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown") { e.preventDefault(); setActive(activeIndex + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setActive(activeIndex - 1); }
+    else if (e.key === "Home") { e.preventDefault(); setActive(0); }
+    else if (e.key === "End") { e.preventDefault(); setActive(options.length - 1); }
+    else if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      selectRole(options[activeIndex].dataset.value, true);
+    }
+    else if (e.key === "Escape") { e.preventDefault(); closeList(true); }
+    else if (e.key === "Tab") { closeList(false); }
+  });
+
+  options.forEach(function (opt) {
+    opt.addEventListener("click", function () { selectRole(opt.dataset.value, true); });
+    opt.addEventListener("mousemove", function () {
+      var i = options.indexOf(opt);
+      if (i !== activeIndex) setActive(i);
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!root.contains(e.target)) closeList(false);
+  });
+
+  /* The role stays required: block submission until a role has been chosen. */
+  form.addEventListener("submit", function (e) {
+    if (!selected) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      errEl.textContent = "Please select your role to continue.";
+      root.classList.add("is-invalid");
+      root.scrollIntoView({ behavior: "smooth", block: "center" });
+      field.focus();
+      return;
+    }
+    /* If the page's main init could not run (no API behind this page),
+       js/register.js attached no submit handler — stop the browser's native
+       POST (which only ever shows a raw server error) and explain instead. */
+    if (!document.querySelector(".pw-wrap")) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      showNoApiHint();
+    }
+  }, true);
+
+  /* ------------------------------------------- sync with js/register.js ----- */
+  /* register.js pre-checks a radio on boot (or from ?role=...). Mirror that
+     state into the dropdown — or clear it so "Select your role" stays honest. */
+  function syncFromBoot() {
+    if (synced) return;
+    synced = true;
+    var pre = new URLSearchParams(location.search).get("role");
+    if (pre && TITLES[pre]) {
+      selectRole(pre, false);
+    } else {
+      radios.forEach(function (r) { r.checked = false; });
+      sections.forEach(function (s) { if (s) s.classList.add("hide"); });
+    }
+  }
+
+  var observer = new MutationObserver(function () {
+    syncFromBoot();
+    observer.disconnect();
+  });
+  sections.forEach(function (s) {
+    if (s) observer.observe(s, { attributes: true, attributeFilter: ["class"] });
+  });
+  setTimeout(function () {
+    if (!synced) { syncFromBoot(); observer.disconnect(); }
+  }, 2500);
+
+  /* ------------------------------------- static-host / viewer detection --- */
+  /* If this page is opened WITHOUT the TutorConnect API behind it (sandboxed
+     file viewer, static file server, file://), every POST answers
+     405 {"detail":"Method Not Allowed"}. Detect that up-front and replace the
+     cryptic error with an actionable message. Live-server use is unchanged. */
+  var alertHost = document.getElementById("formAlert");
+  var HINT =
+    '<div class="error-box"><span class="ico"><i class="bi bi-exclamation-triangle"></i></span><div><strong>This page is not connected to the TutorConnect server.</strong> ' +
+    "Creating an account needs the live API, but this copy of register.html is being served statically " +
+    "(file preview or static file server), so the request can never succeed. " +
+    "Open the <strong>live preview</strong> of the project (port 8000) in your browser, or run " +
+    "<code>python scripts/serve.py</code> in the project folder and visit " +
+    "<code>http://localhost:8000/register.html</code>.</div></div>";
+
+  function showNoApiHint() {
+    if (alertHost && !alertHost.dataset.hinted) {
+      alertHost.dataset.hinted = "1";
+      alertHost.innerHTML = '<div style="margin-bottom:16px">' + HINT + "</div>";
+    }
+  }
+
+  var apiMissing = false;
+  fetch("/api/config", { method: "GET" })
+    .then(function (r) {
+      return r.json().then(function (j) { return r.ok && j && j.app_name; });
+    })
+    .then(function (ok) { if (!ok) { apiMissing = true; showNoApiHint(); } })
+    .catch(function () { apiMissing = true; showNoApiHint(); });
+
+  /* If a submit still races ahead and renders the raw 405 text, swap it out. */
+  if (alertHost) {
+    new MutationObserver(function () {
+      if (alertHost.innerHTML.indexOf("Method Not Allowed") !== -1) {
+        alertHost.dataset.hinted = "1";
+        alertHost.innerHTML = '<div style="margin-bottom:16px">' + HINT + "</div>";
+      }
+    }).observe(alertHost, { childList: true, subtree: true, characterData: true });
+  }
+
+  /* Same static-host case: the subjects picker would otherwise print the raw
+     transport error ("Not found: /api/subjects"). Quiet it once we know no API
+     is behind this page. Live-server behaviour is completely untouched. */
+  var pickerHost = document.getElementById("subjectPicker");
+  if (pickerHost) {
+    new MutationObserver(function () {
+      if (!apiMissing) return;
+      if (/Not found:|Cannot reach the server/.test(pickerHost.textContent || "")) {
+        pickerHost.innerHTML =
+          '<p class="muted small">The subject list loads automatically once this page is ' +
+          "served by the live TutorConnect server (see the note above).</p>";
+      }
+    }).observe(pickerHost, { childList: true, subtree: true, characterData: true });
+  }
+
+  /* ------------------------------------------------ restore photo upload -- */
+  /* If the page's main init never ran (page opened without the API server),
+     js/register.js could not build the device photo picker — build it here so
+     the upload widget (with Change-photo / Remove-photo buttons beside the
+     preview) is always present. On the live server this is a no-op because
+     register.js already built the picker. */
+  function ensurePhotoPicker() {
+    var host = document.getElementById("photoPicker");
+    if (!host || host.childElementCount > 0 || !window.UI || !UI.photoPicker) return;
+    host.appendChild(UI.photoPicker({}).el);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { setTimeout(ensurePhotoPicker, 1200); });
+  } else {
+    setTimeout(ensurePhotoPicker, 1200);
+  }
+  setTimeout(ensurePhotoPicker, 3000);
+
+  /* Never show two pickers: if the fallback above and js/register.js both
+     built one (slow-boot race), keep only the last child — that is the
+     picker register.js wires into the form submission. */
+  var photoHostDedup = document.getElementById("photoPicker");
+  if (photoHostDedup) {
+    new MutationObserver(function () {
+      while (photoHostDedup.childElementCount > 1) {
+        photoHostDedup.removeChild(photoHostDedup.firstElementChild);
+      }
+    }).observe(photoHostDedup, { childList: true });
+  }
+})();
+</script>
+</body>
+</html>

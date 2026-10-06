@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reset your password · TutorConnect</title>
+<meta name="description" content="Request a temporary password for your TutorConnect account." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/auth-portal.css" />
+</head>
+<body class="ap-body" data-ap-page="forgot">
+
+<!-- ============================================================ TOP BAR -->
+<header class="ap-topbar">
+  <div class="ap-topbar-inner">
+    <a class="ap-logo" href="/index.html" aria-label="TutorConnect home">
+      <span class="ap-logo-mark" aria-hidden="true">🎓</span>
+      Tutor<em>Match</em>
+    </a>
+
+    <label class="ap-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" placeholder="Search for courses, topics, or instructors" aria-label="Search tutors" />
+    </label>
+
+    <nav class="ap-topbar-actions" aria-label="Account">
+      <a class="ap-icon-btn" href="/tutors.html" title="Browse tutors" aria-label="Browse tutors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      </a>
+      <a class="ap-link-plain" href="/login">Log in</a>
+      <a class="ap-btn-dark" href="/signup">Sign up</a>
+      <button class="ap-icon-btn ap-burger" type="button" aria-label="Menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- =============================================================== CARD -->
+<main class="ap-main">
+  <section class="ap-card" aria-labelledby="ap-title">
+    <h1 class="ap-title" id="ap-title">Reset your password</h1>
+    <p class="ap-subtitle">We’ll issue a temporary password to your registered email.</p>
+
+    <form id="ap-forgot-form" novalidate>
+      <div class="ap-field">
+        <div class="ap-labelrow">
+          <label class="ap-label" for="fp-email">Email address</label>
+        </div>
+        <div class="ap-input-wrap">
+          <input class="ap-input" id="fp-email" name="email" type="email"
+                 placeholder="name@example.com" autocomplete="email" required />
+        </div>
+      </div>
+
+      <div class="ap-error" id="ap-forgot-error" role="alert"></div>
+
+      <button class="ap-submit" type="submit">
+        Send reset instructions <span aria-hidden="true">→</span>
+      </button>
+
+      <p class="ap-help">
+        For your safety we never reveal whether an address is registered.
+        Temporary passwords expire after a single sign-in.
+      </p>
+    </form>
+
+    <div class="ap-success" id="ap-forgot-done" role="status">
+      <div class="ap-success-icon" aria-hidden="true">✉️</div>
+      <h2>Check your inbox</h2>
+      <p>
+        If an account exists for <code id="ap-forgot-email-echo"></code>, a
+        <strong>temporary password</strong> is on its way. Use it on the sign-in
+        page, then set your own password from
+        <em>Dashboard → Account → Change password</em>.
+      </p>
+      <p>
+        Nothing arrived? Check spam, or ask your platform administrator to
+        re-issue one from <em>Admin → Users</em>.
+      </p>
+      <p class="ap-help">
+        Demo deployments run without a mail server — sign in with your demo
+        credentials instead, e.g. <code>chiamaka@example.com</code> /
+        <code>StudentDemo123</code>.
+      </p>
+      <button class="ap-submit" id="ap-forgot-again" type="button" style="margin-top:16px">
+        Use a different email
+      </button>
+    </div>
+
+    <p class="ap-switch">
+      Remembered it after all? <a href="/login">Back to sign in</a>
+    </p>
+  </section>
+</main>
+
+<footer class="ap-footer">© <span id="ap-year">2026</span> TutorConnect — Find the right tutor. Learn with confidence.</footer>
+
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/auth-portal.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿frontend\js\app.js:56: /* subject emojis (s.icon) are kept on purpose */
+frontend\js\app.js:59: let html = subjects.map((s) => '<span class="tag">' + esc(s.icon || "") + " " + esc(s.name) + "</span>").join("");
+frontend\js\dashboard.js:154: nav.appendChild(el("a", { href: item.href }, [el("span", { class: "ico", html: item.icon }), item.label]));
+frontend\js\dashboard.js:160: }, [el("span", { class: "ico", html: item.icon }), item.label]);
+frontend\js\dashboard.js:1687: /* subject emojis (s.icon) are kept on purpose */
+frontend\js\dashboard.js:1689: "<tr><td><strong>" + esc(s.icon || "") + " " + esc(s.name) + "</strong></td><td>" + esc(s.category || "–") +
+frontend\js\dashboard.js:1721: '<label class="field"><span class="label">Icon (emoji)</span><input class="input" id="sj-icon" maxlength="4" value="' + esc(subject ? (subject.icon || "") : "") + '" placeholder="📘" /></label>' +
+frontend\js\home.js:30: el("option", { value: String(s.id) }, (s.icon && String(s.icon).indexOf("bi-") !== 0 ? s.icon + "  " : "") + s.name + " (" + s.tutor_count + ")")
+frontend\js\home.js:49: el("span", { class: "emoji", html: subject.icon ? UI.subjectIcon(subject.icon) : '<i class="bi bi-book"></i>' }),
+frontend\js\tutor-profile.js:156: el("span", { class: "emoji", text: s.icon || "📘" }),
+frontend\js\tutor-profile.js:493: subjects.forEach((s) => subjectSelect.appendChild(el("option", { value: String(s.id) }, (s.icon ? s.icon + " " : "") + s.name)));
+frontend\js\tutors.js:101: /* subject emoji (s.icon) kept on purpose */
+frontend\js\tutors.js:105: (s.icon ? s.icon + " " : "") + s.name + " (" + s.tutor_count + ")")));
+frontend\js\tutors.js:172: if (chip.icon) node.innerHTML = '<i class="bi bi-' + chip.icon + '"></i> ';
+frontend\js\ui.js:192: el("span", { class: "ico", html: options.icon || TOAST_ICONS[type] || TOAST_ICONS.info }),
+frontend\js\ui.js:382: return '<div class="empty"><div class="ico">' + (options.icon || ic("search")) + "</div>" +
+frontend\js\ui.js:518: linksForRole.forEach((l) => menu.appendChild(el("a", { href: l.href }, [el("span", { html: l.icon }), l.label])));
+frontend\js\ui.js:1011: Subject emojis (s.icon) are kept on purpose. */
+frontend\js\ui.js:1027: }, [box, el("span", { html: (s && s.icon ? subjectIcon(s.icon) + " " : "") + esc(s ? s.name : "Subject #" + id) })]);
+frontend\js\ui.js:1047: if (!picked.has(s.id)) selectEl.appendChild(el("option", { value: String(s.id) }, (s.icon && String(s.icon).indexOf("bi-") !== 0 ? s.icon + " " : "") + s.name));
